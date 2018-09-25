@@ -1,0 +1,13 @@
+
+<div class="avatar">{{resource.id}}</div>
+<div class="item-content">
+    <div class="name"> {{resource.name}}</div>
+    <div>
+        <span class="badge"> {{resource.quantity}}</span>
+        <span> {{resource.type}}  |  {{resource.unit}} </span>
+    </div>
+    <div>{{resource.campId}} </div>
+    <button class="btn btn-primary" type="button" [routerLink]="['update', resource.id]">Modify</button>
+    <button class="btn btn-primary" type="button" (click)="delete(resource.id)">Delete</button>
+ 
+</div>

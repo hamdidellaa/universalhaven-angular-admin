@@ -1,0 +1,128 @@
+<div>
+        <input
+        type='text'
+        style='padding:8px;margin:15px auto;width:30%;'
+        placeholder='Search...'
+        (keyup)='updateFilter($event)'
+      />
+    <ngx-datatable
+    class="material"
+    [rows]="rows"
+    [selected]="selected"
+    [selectionType]="'checkbox'"
+    [selectAllRowsOnPage]="false"
+    [displayCheck]="displayCheck"
+    (activate)="onActivate($event)"
+    (select)='onSelect($event)'
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [limit]="5">
+    <ngx-datatable-column
+    [width]="30"
+    [sortable]="false"
+    [canAutoResize]="false"
+    [draggable]="false"
+    [resizeable]="false"
+    [headerCheckboxable]="true"
+    [checkboxable]="true" >
+  </ngx-datatable-column>
+  <ngx-datatable-column prop="name"></ngx-datatable-column>
+  <ngx-datatable-column prop="surname"></ngx-datatable-column>
+  <ngx-datatable-column prop="identityNumber"></ngx-datatable-column>
+  <ngx-datatable-column prop="country"></ngx-datatable-column>
+  <ngx-datatable-column prop="camp" name="Camp">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value.name}} in  {{value.country}} 
+            </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Actions" sortable="false" prop="id">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            {{column.name}}
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button md-icon-button (click)="checkout(value)">
+                <i class="fa fa-ban"></i>
+            </button>
+            <button md-icon-button (click)="viewrefugee(value)"  data-toggle="modal" data-target=".bs-example-modal-lg">
+                <i class="fa fa-check"></i>
+            </button>
+        </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+
+  <div class='selected-column'>
+        <h4>Selections <small>({{selected?.length}})</small></h4>
+        <ul>
+          <li *ngFor='let sel of selected'>
+            {{sel.name}}
+          </li>
+          <li *ngIf="!selected?.length">No Selections</li>
+        </ul>
+      </div>
+   
+
+
+
+
+
+      <div *ngIf="testchaine" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+          
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel"> {{refugee.name}} {{refugee.surname}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bodymodal" style="text-align:center;">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Current avatar -->
+                                    <img class="img-responsive avatar-view"  alt="Avatar" title="Change the avatar" style="width:35%;display:initial" src="/assets/img/ref1.jpg">
+                                </div>
+                            </div>
+                            <h3 id="nameit"></h3>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    Country : <i class="fa fa-map-marker user-profile-icon"></i> <span >{{refugee.country}}</span>
+                                </li>
+          
+                                <li class="m-top-xs">
+                                    <i class="fa fa-external-link user-profile-icon"></i>
+                                    Gender :  <span>{{refugee.gender}}</span>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-hospital-o user-profile-icon"></i> Identity Type : 
+                                    <span>{{refugee.identityType}}</span>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-sort-numeric-asc user-profile-icon"></i> Identity Number : 
+                                    <span>{{refugee.identityNumber}}</span>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-child user-profile-icon"></i> Marital Status :
+                                    <span>{{refugee.maritalStatus}}</span>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-bullhorn user-profile-icon"></i> Special Needs :
+                                    <span>{{refugee.specialNeeds}}</span>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-home user-profile-icon"></i> Camp : 
+                                    <span>{{refugee.camp["name"]}} in {{refugee.camp["country"]}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+  

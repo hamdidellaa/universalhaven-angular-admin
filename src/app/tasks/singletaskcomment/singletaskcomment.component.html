@@ -1,0 +1,18 @@
+
+<div class="comment" style="position:relative">
+    <div class="picture">
+       <img src="http://localhost:18080/universalhaven-web{{comment.Picture}}">
+    </div>
+    
+    <div class="comment-text">
+        <div> <span style="font-weight:bold">{{comment.Publisher}}</span> 
+            <small style="position:absolute;top:0;right:0;padding-right:0.5em" class="time">
+                {{comment.PublishDate|datepipe}}
+            </small>
+        </div>
+        <p style="margin-bottom:0"> {{comment.Content}} </p>
+        <small *ngIf="canDeleteComment(comment)" (click)="delete()">Delete</small>
+    </div>
+    
+</div>
+<hr>

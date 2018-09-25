@@ -1,0 +1,68 @@
+<h2>Add a resource</h2>
+<div class="x_content">
+  <br />
+  <form [formGroup]="form" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        Resource's Name
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input formControlName="name" [(ngModel)]="resource.name" type="text" required="required" name="name" class="form-control col-md-7 col-xs-12" > 
+        <!-- (change)="log(form.get('name').errors)">
+          <div *ngIf="!name.valid && username.touched" class="alert alert-danger">
+            <p *ngIf="name.errors.required"> Name Obligatory</p>
+            <p *ngIf="name.errors.minlength"> Must be at least {{name.errors.minlength.requiredLength}} characters</p>
+        </div>-->
+      </div>
+      
+     
+
+
+
+
+
+
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+        Resource's Quantity
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input formControlName="quantity" [(ngModel)]="resource.quantity" type="number" required="required" class="form-control col-md-7 col-xs-12">
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">
+        Resource's Type :
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <select formControlName="type" [(ngModel)]="resource.type" class="form-control col-md-7 col-xs-12" name="type" 
+          required="required">
+          <option disabled="" selected="">Select Option</option>
+          <option *ngFor="let t of types" value="{{t.value}}">
+       {{ t.viewValue }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+        Resource's Unit
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input formControlName="unit" [(ngModel)]="resource.unit" type="text" required="required" class="form-control col-md-7 col-xs-12">
+      </div>
+
+    </div>
+    <div class="ln_solid"></div>
+    <div class="form-group">
+      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+        <button class="btn btn-primary" type="button">Cancel</button>
+        <button class="btn btn-primary" type="reset">Reset</button>
+        <button id="submit" (click)=" addNewResource()" type="submit" class="btn btn-success">Add</button>
+      </div>
+    </div>
+
+  </form>
+</div>

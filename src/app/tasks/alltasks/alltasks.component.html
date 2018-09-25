@@ -1,0 +1,54 @@
+<app-loader *ngIf="loading">
+</app-loader>
+
+<form *ngIf="!loading">
+    <div class="form-group">
+        <mat-form-field class="col-md-12">
+          <input matInput placeholder="Filter" type="search" #keyword (keyup)="search(keyword.value)">
+    
+    
+        </mat-form-field>
+      </div>
+</form>
+<div class="row" *ngIf="!loading">
+  
+  <br>
+  <div class="col-md-3">
+    <mat-card style="width:95%;height:100%;background-color:#e0e0e0;color:#757575">
+      <mat-card-title>Pending</mat-card-title>
+      <mat-card-content id="pending" style="min-height:300px" [dragula]="'tasks'">
+        <app-singletask (deleteEvent)="deleteTask(task)" id="{{task.id}}" *ngFor="let task of tasks.pending" [task]="task" [deletable]="deletable"></app-singletask>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-3">
+    <mat-card style="width:95%;background-color:#e0e0e0;color:#757575">
+      <mat-card-title>Doing</mat-card-title>
+      <mat-card-content id="doing" [dragula]="'tasks'" style="min-height:300px">
+        <app-singletask (deleteEvent)="deleteTask(task)" id="{{task.id}}" *ngFor="let task of tasks.doing" [task]="task" [deletable]="deletable"></app-singletask>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-3">
+    <mat-card style="width:95%;background-color:#e0e0e0;color:#757575">
+      <mat-card-title>Done</mat-card-title>
+      <mat-card-content id="done" [dragula]="'tasks'" style="min-height:300px">
+        <app-singletask (deleteEvent)="deleteTask(task)" id="{{task.id}}" *ngFor="let task of tasks.done" [task]="task" [deletable]="deletable"></app-singletask>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-3">
+    <mat-card style="width:95%;background-color:#e0e0e0;color:#757575">
+      <mat-card-title>Declined</mat-card-title>
+      <mat-card-content id="declined" [dragula]="'tasks'" style="min-height:300px">
+        <app-singletask (deleteEvent)="deleteTask(task)" id="{{task.id}}" *ngFor="let task of tasks.declined" [task]="task" [deletable]="deletable"></app-singletask>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+
+</div>

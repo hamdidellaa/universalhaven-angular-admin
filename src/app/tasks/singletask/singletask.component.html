@@ -1,0 +1,70 @@
+<mat-card id="{{task.id}}" style="margin-bottom:1em;background-color:#fafafa">
+  
+    <div style="position:absolute;top:0;right:0">
+      <a *ngIf="deletable" (click)="delete()" style="width:20px;height:20px" mat-icon-button color="primary">
+        <span class="fa fa-close"></span>
+      </a>
+      <a style="width:20px;height:20px" [routerLink]="['/task/details',task.id]" mat-icon-button color="primary">
+        <span class="fa fa-chevron-right"></span>
+      </a>
+
+    </div>
+  
+  <mat-card-content>
+    {{task.description}}
+    <div class="importance {{task.priority.toLowerCase()}}" style="width:40%"></div>
+    <br>
+
+
+    <small class="pull-left">
+      <span class="fa fa-calendar" style="margin-right:2px"></span>{{task.startingDate|date:'shortDate'}}
+    </small>
+    <small class="pull-right">
+      <span class="fa fa-calendar" style="margin-right:2px"></span>{{task.deadline|date:'shortDate'}}
+    </small>
+    <br>
+    <small class="pull-left">
+      <span  class="fa fa-user" style="margin-right:2px"></span>{{task.taskExecutor}}</small>
+    <small class="pull-right">
+      <span  class="fa fa-comments" style="margin-right:2px"></span>{{task.commentCount}}</small>
+    <br>
+
+   </mat-card-content>
+
+
+
+</mat-card>
+
+
+<!--
+<div class="task panel draggable drag-drop" style="width:100%" id="{{task.id}}">
+
+  <a class="seemore" *ngIf="deletable" (click)="delete()">x</a>
+
+  <div class="importance {{task.priority.toLowerCase()}}"></div>
+  <p>{{task.description}}</p>
+  <div class="task-details">
+    <div>
+      <span class="fa fa-comments">{{task.commentCount}}</span>
+    </div>
+    <div>
+      <span class="fa fa-calendar" style="color:green"></span>
+      {{task.startingDate|date:'shortDate'}}
+    </div>
+    <div>
+      <span class="fa fa-calendar" style="color:red"></span>
+      {{task.deadline|date:'shortDate'}}
+    </div>
+  </div>
+  <div style="margin-top:3px;">
+    <span class="fa fa-user pull-left">
+      {{task.taskAssigner}}
+    </span>
+    <button class="btn btn-primary btn-xs pull-right">
+      <a [routerLink]="['/task/details',task.id]" style="color:white;text-decoration:unset">Details</a>
+    </button>
+
+  </div>
+  <div class="clearfix"></div>
+</div>
+-->

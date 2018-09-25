@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+.ng-touched.ng-invalid {
+    border-color: #FF586B;
+}
+.danger {
+    color: #FF586B !important;
+    font-size: 120%;
+    font-family: "Rubik", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

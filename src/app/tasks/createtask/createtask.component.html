@@ -1,0 +1,59 @@
+
+<div class="x_content">
+  <br />
+  <form (ngSubmit)="addTask()" [formGroup]="form" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+   
+    <mat-card>
+      <mat-card-title>Assign a task</mat-card-title>
+      <mat-card-content>
+        <div class="form-group">
+          <mat-form-field class="col-md-8">
+            <input matInput placeholder="Description" [(ngModel)]="task.description" [formControl]="form.get('description')">
+
+
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="col-md-8">
+            <input [(ngModel)]="task.Deadline" matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="form.get('deadline')">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-radio-group class="col-md-8" [formControl]="form.get('priority')" [(ngModel)]="task.Priority">
+            <mat-radio-button value="1">Low</mat-radio-button>
+            <mat-radio-button value="2">Medium</mat-radio-button>
+            <mat-radio-button value="3">High</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="col-md-8">
+            <input [(ngModel)]="task.TaskExecutorId" matInput [matAutocomplete]="auto" placeholder="Assign to:" [formControl]="form.get('taskExecutor')">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let user of userList" [value]="user.login">
+                {{ user.login }}
+              </mat-option>
+            </mat-autocomplete>
+
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <div class="col-md-8">
+            <button *ngIf="!adding" mat-raised-button color="primary">Submit</button>
+            <button *ngIf="!adding" mat-raised-button color="primary" (click)="form.reset()">Reset</button>
+            <mat-progress-bar *ngIf="adding" mode="indeterminate"></mat-progress-bar>
+            
+          </div>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+
+
+
+
+
+  </form>
+</div>

@@ -1,0 +1,145 @@
+<div class="row tile_count">
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Camps</span>
+      <div class="count campsnumber">{{campsnumber}}</div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-clock-o"></i> Total Rooms</span>
+    <div class="count">{{rmale+rfemale+rcouple+rfamilies}}</div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
+      <div class="count green">{{malesnumber}}</div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
+     <div class="count">{{femalesnumber}}</div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Refugees</span>
+     <div class="count">{{malesnumber+femalesnumber}}</div>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+<span class="count_top" style="font-size:15px">Rooms Type </span><br />
+      <span class="count_top"><i class="fa fa-user"></i>Males {{rmale}} </span><br />
+      <span class="count_top"><i class="fa fa-user"></i>Females {{rfemale}}</span><br />
+      <span class="count_top"><i class="fa fa-user"></i>Couple {{rcouple}}</span><br />
+      <span class="count_top"><i class="fa fa-user"></i>Families {{rfamilies}}</span>
+  </div>
+</div>
+<div class="row">
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+      <div class="x_title">
+          <h2>Camps location <small>geo-presentation</small></h2>
+        
+          <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+          <div class="dashboard-widget-content">
+              <div class="col-md-4 hidden-small">
+                  <h2 class="line_30">{{campsnumber}} Camps from {{countrynumber}} countries</h2>
+
+                  <table>
+                      <tbody id="countries_list" *ngFor="let country of countries | keys">
+                            <tr>
+                                <td>           
+                                     {{country.key}}
+                                    </td><td class='fs15 fw700 text- right'>
+                                            {{country.value}}
+                                        </td></tr>
+                      </tbody>
+                  </table>
+              </div>
+              <agm-map 
+              [latitude]="35"
+              [longitude]="7" [zoom]="2"
+              [disableDefaultUI]=false
+              [zoomControl]=false>
+                <agm-marker *ngFor="let m of markers;let i = index"
+                
+                [latitude]="m.lat" 
+                [longitude]="m.lng"
+                [markerDraggable]=false          
+                >
+                <agm-info-window>
+                      <strong>{{m.name}}</strong>
+                  </agm-info-window>
+              </agm-marker>
+              </agm-map>  
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="x_panel">
+  <div class="x_title">
+      <h2>Camps</h2>
+      <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+        <input
+        type='text'
+        style='padding:8px;margin:15px auto;width:30%;'
+        placeholder='Search...'
+        (keyup)='updateFilter($event)'
+      />
+    <ngx-datatable
+    class="material"
+    [rows]="rows"
+    [selected]="selected"
+    [selectionType]="'checkbox'"
+    [selectAllRowsOnPage]="false"
+    [displayCheck]="displayCheck"
+    (activate)="onActivate($event)"
+    (select)='onSelect($event)'
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [limit]="5">
+    <ngx-datatable-column
+    [width]="30"
+    [sortable]="false"
+    [canAutoResize]="false"
+    [draggable]="false"
+    [resizeable]="false"
+    [headerCheckboxable]="true"
+    [checkboxable]="true" >
+  </ngx-datatable-column>
+  <ngx-datatable-column prop="name"></ngx-datatable-column>
+  <ngx-datatable-column prop="country"></ngx-datatable-column>
+  <ngx-datatable-column prop="occupancy"></ngx-datatable-column>
+  <ngx-datatable-column prop="capacity"></ngx-datatable-column>
+  <ngx-datatable-column prop="campManager" name="campManager">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{value.name}}  {{value.surname}} 
+            </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Actions" sortable="false" prop="id">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            {{column.name}}
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <a [routerLink]="['UpdateCamp/',value]">Edit</a>
+        </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+
+  <div class='selected-column'>
+        <h4>Selections <small>({{selected?.length}})</small></h4>
+        <ul>
+          <li *ngFor='let sel of selected'>
+            {{sel.name}}
+          </li>
+          <li *ngIf="!selected?.length">No Selections</li>
+        </ul>
+      </div>
+  </div>
+  <div>
+  
+</div></div>
+</div>
+</div>

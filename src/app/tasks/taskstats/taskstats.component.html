@@ -1,0 +1,102 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+
+
+<app-loader *ngIf="!loaded"></app-loader>
+
+<!-- pie chart -->
+<div *ngIf="loaded" class="col-md-6 col-sm-6 col-xs-12">
+  <div class="x_panel">
+      <div class="x_title">
+          <h2>Camp Tasks overview <small>Per status</small></h2>
+
+          <div class="clearfix"></div>
+      </div>
+      <div class="x_content2">
+        <canvas baseChart
+        [data]="statusdoughnutChartData"
+        [labels]="statusdoughnutChartLabels"
+        [chartType]="statusdoughnutChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+      </div>
+  </div>
+</div>
+<div *ngIf="loaded" class="col-md-6 col-sm-6 col-xs-12">
+  <div class="x_panel">
+      <div class="x_title">
+          <h2>Camp Tasks overview <small>Completion</small></h2>
+
+          <div class="clearfix"></div>
+      </div>
+      <div class="x_content2">
+        <canvas baseChart
+        [data]="timedoughnutChartData"
+        [labels]="timedoughnutChartLabels"
+        [chartType]="timedoughnutChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="loaded" class="col-md-12" style="margin-bottom:4em;">
+  <div class="x_panel">
+      <div class="x_title">
+          <h2><span class="fa fa-star"></span> Wall of fame  <small>Most active staff members</small></h2>
+
+          <div class="clearfix"></div>
+      </div>
+      <div class="x_content col-md-6 col-md-offset-3">
+         
+             
+          <div class="col-md-3 col-xs-12 widget widget_tally_box" *ngFor="let user of stats.topthree">
+              <div class="x_panel fixed_height_390">
+                  <div class="x_content">
+                     
+                      <div class="flex">
+                          <ul class="list-inline widget_profile_box">
+                              <li style="visibility:hidden">
+                                  <a>
+                                      <i class="fa fa-facebook"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <img src="http://localhost:18080/universalhaven-web{{user.picture}}" alt="..." class="img-circle profile_img">
+                              </li>
+                              <li style="visibility:hidden">
+                                  <a>
+                                      <i class="fa fa-twitter"></i>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+
+                      <h3 class="name">{{user.login}}</h3>
+
+                      <div class="flex">
+                          <ul class="list-inline count2">
+                              <li >
+                                  <h3>{{user.completedtasks}}</h3>
+                                  <span>Tasks</span>
+                              </li>
+                              <li>
+                                  <h3>{{user.onTime}}</h3>
+                                  <span>On time</span>
+                              </li>
+                              <li >
+                                  <h3>{{user.afterDeadline}}</h3>
+                                  <span>After Deadline</span>
+                              </li>
+                          </ul>
+                      </div>
+                     <!-- <p>
+                          <strong>Rank:</strong> {{stats.topthree.indexOf(user)+1}}
+                      </p> -->
+                  </div>
+              </div>
+          </div>
+          
+  </div>
+</div>
+  </div>
+

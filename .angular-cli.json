@@ -1,0 +1,91 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "universalhaven-admin"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        
+        "../node_modules/@swimlane/ngx-datatable/release/themes/material.css",
+        "../node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
+   
+        "styles.css"
+      ],
+      "scripts": [
+        "assets/vendors/jquery/dist/jquery.min.js",
+        "assets/vendors/bootstrap/dist/js/bootstrap.min.js",
+        "assets/vendors/fastclick/lib/fastclick.js",
+        "assets/vendors/nprogress/nprogress.js",
+        "assets/vendors/Chart.js/dist/Chart.min.js",
+        "assets/vendors/gauge.js/dist/gauge.min.js",
+        "assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
+        "assets/vendors/iCheck/icheck.min.js",
+        "assets/vendors/skycons/skycons.js",
+        "assets/vendors/Flot/jquery.flot.js",
+        "assets/vendors/Flot/jquery.flot.pie.js",
+        "assets/vendors/Flot/jquery.flot.time.js",
+        "assets/vendors/Flot/jquery.flot.stack.js",
+        "assets/vendors/Flot/jquery.flot.resize.js",
+        "assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js",
+        "assets/vendors/flot.curvedlines/curvedLines.js",
+        "assets/vendors/DateJS/build/date.js",
+        "assets/vendors/jqvmap/dist/jquery.vmap.js",
+        "assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js",
+        "assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js",
+        "assets/vendors/moment/min/moment.min.js",
+        "assets/vendors/bootstrap-daterangepicker/daterangepicker.js"   
+             
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "class": {
+      "spec": false
+    },
+    "component": {}
+  }
+}

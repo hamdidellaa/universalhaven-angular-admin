@@ -1,0 +1,48 @@
+
+
+<app-login *ngIf="!loggedIn" (loginSuccess)="loggedInEventHandler()">
+  
+</app-login>
+
+<body class="nav-md" *ngIf="loggedIn">
+  <div class="container body">
+    <div class="main_container" style="min-height:1000px">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="/admin" class="site_title">
+              
+              <span>Universalhaven</span>
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <app-sidebarmenuprofile [user]="user"></app-sidebarmenuprofile>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <app-sidebarmenu [user]="user"></app-sidebarmenu>
+          <!-- /sidebar menu -->
+
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <app-topnav [user]="user" (loggedOut)="loggedOut()"></app-topnav>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- /page content -->
+
+      
+    </div>
+  </div>
+
+</body>

@@ -1,0 +1,86 @@
+<div class="col-md-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>Task Details
+
+      </h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li>
+          <a class="collapse-link">
+            <i class="fa fa-chevron-up"></i>
+          </a>
+        </li>
+
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <div style="font-size:1.5em;">Description : </div>
+      <div style="margin-bottom:1em;font-size:1em;" class="task-description">
+        {{task.description}} </div>
+      <div>
+        <span class="fa fa-calendar"></span> Created on : {{task.startingDate|date:'shortDate'}}</div>
+      <div>
+        <span class="fa fa-calendar"></span> Deadline : {{task.deadline|date:'shortDate'}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>Comments
+      </h2>
+      <ul class="nav navbar-right panel_toolbox">
+        <li>
+          <a class="collapse-link">
+            <i class="fa fa-chevron-up"></i>
+          </a>
+        </li>
+
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <div>
+        <form (ngSubmit)="addComment()">
+          <mat-form-field style="width:100%">
+            <input matInput placeholder="Post a comment" [(ngModel)]="comment.Content" [formControl]="content">
+
+
+          </mat-form-field>
+          <button class="pull-right" mat-raised-button color="primary" type="submit">Send</button>
+
+        </form>
+      </div>
+      <br>
+      <div class="comments">
+        <app-singletaskcomment (commentDeleted)="deleteComment(comment)" *ngFor="let comment of task.comments" [comment]="comment"></app-singletaskcomment>
+      </div>
+      <!--
+      <ul class="list-unstyled msg_list">
+       
+        <li class="nocomments" *ngIf="task.comments.length==0">
+          <h3>No comments yet ..</h3>
+        </li>
+        
+        
+        <app-singletaskcomment (commentDeleted)="deleteComment(comment)" *ngFor="let comment of task.comments" [comment]="comment"></app-singletaskcomment>
+
+        <li id="contentli">
+
+
+          <textarea id="content" [(ngModel)]="comment.Content" name="content" placeholder="Leave a comment.." type="text" class="form-control" style="width:100%;"></textarea>
+
+        </li>
+        <li style="margin-top:0;padding-top:0;">
+          <button id="send" class="btn btn-primary btn-block" (click)="addComment()">Send</button>
+        </li>
+
+
+      </ul>
+
+    -->
+    </div>
+  </div>
+</div>

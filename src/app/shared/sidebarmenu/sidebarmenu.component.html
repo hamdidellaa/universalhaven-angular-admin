@@ -1,0 +1,64 @@
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+      <h3>General</h3>
+      <ul class="nav side-menu">
+       
+        <li><a><i class="fa fa-building-o"></i> Camps <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a  [routerLink]="['Camp']">View Camps </a></li>
+            <li><a  [routerLink]="['Camp/NewCamp']">Create a Camp </a></li>
+            <li><a  [routerLink]="['Room/NewRoom']">Create a Room </a></li>
+            <!--<li><a  [routerLink]="['test']">Create a Room </a></li>-->
+          </ul>
+        </li>
+      
+        <li><a><i class="fa fa-child"></i> Refugees <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a  [routerLink]="['Refugees']">View Refugees </a></li>
+            <li><a  [routerLink]="['Newrefugee']">Add Refugees </a></li>
+            
+          </ul>
+        </li>
+        <li><a><i class="fa fa-tasks"></i> Tasks <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a *ngIf="user.role=='CAMP_MANAGER'" [routerLink]="['task/create']">Assign a task</a></li>
+            <li><a [routerLink]="['task']">View Tasks</a></li>
+            <li><a *ngIf="user.role=='CAMP_MANAGER'" [routerLink]="['task/stats']">Task Stats</a></li>
+          </ul>
+        </li>
+        <li><a><i class="fa fa-tasks"></i> Fundraising events <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a [routerLink]="['fundraisingEvents']">All events</a></li>
+            <li><a [routerLink]="['fundraisingEvents/myEvents']">My events</a></li>
+            <li><a [routerLink]="['fundraisingEvents/create']">Create Fundraising Event</a></li>
+            <li><a [routerLink]="['fundraisingEvents/stats']">Fundraising Event stats</a></li>
+          </ul>
+        </li>
+        <li><a><i class="fa fa-inbox"></i> Suggestions <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a [routerLink]="['resource']">Resources </a></li>
+            <li><a [routerLink]="['resource/create']">Create a Resource </a></li>
+          </ul>
+        </li>
+        <li><a><i class="fa fa-archive"></i> Stock <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="#">Sub menu 1 </a></li>
+            <li><a href="#">Sub menu 2 </a></li>
+            <li><a href="#">Sub menu 3 </a></li>
+          </ul>
+        </li>
+ 
+        <li><a><i class="fa fa-star"></i> Activities <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="#">Sub menu 1 </a></li>
+            <li><a href="#">Sub menu 2 </a></li>
+            <li><a href="#">Sub menu 3 </a></li>
+          </ul>
+        </li>
+        <li *ngIf="user.role=='ICRC_MANAGER'"><a [routerLink]="['donationstats']"><i class="fa fa-money"></i> Donations </a>
+            
+        </li>
+      </ul>
+    </div>
+
+  </div>

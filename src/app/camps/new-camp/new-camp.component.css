@@ -1,0 +1,17 @@
+agm-map {
+    height: 300px;
+  }
+  .text-muted {
+    color: #ea2553 !important;
+}
+.text-vald {
+    color: #06d666 !important;
+}
+.ng-touched.ng-invalid {
+	border-color: #ea2553!important;
+    background: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: #06d666;
+  background: none;
+}

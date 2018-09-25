@@ -1,0 +1,65 @@
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <!--<h3>Typography</h3>-->
+              </div>
+
+              
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>{{event.title}}</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div class="col-md-8 col-lg-8 col-sm-7">
+                      <!-- blockquote -->
+                      <blockquote>
+                        <p>{{event.description}}</p>
+                        <footer>{{event.camp.address}} :{{event.camp.country}}
+                        </footer>
+                      </blockquote>
+
+                      <blockquote class="blockquote-reverse">
+                        <img style="width: 100%; display: block;" src="http://localhost/FileUpload/uploads/{{event.imagePath}}" alt="image" />
+                      </blockquote>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-5">
+                      <h1>Urgency: {{event.urgency}}</h1>
+                      <h1>Goal: {{event.goal}} $</h1>
+                      <h1>Raised: {{amountRecolted}} $</h1>
+                      <h2>{{event.publishDate}}</h2>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+
+

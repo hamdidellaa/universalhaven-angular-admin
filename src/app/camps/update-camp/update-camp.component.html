@@ -1,0 +1,76 @@
+<div class="x_panel">
+  <div class="x_title">
+      <h2>Create Camp</h2>
+  
+      <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+      
+          <label for="campname">Camp Name * :</label>
+          <input type="text" class="form-control" [(ngModel)]="camp.name" required />
+          <label for="address">address (20 chars min, 100 max) :</label>
+          <textarea  [(ngModel)]="camp.address" required="required" class="form-control"  data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                    data-parsley-validation-threshold="10"></textarea>
+          <label for="superficy">superficy * :</label>
+          <input type="text"  [(ngModel)]="camp.superficy" class="form-control"  data-parsley-trigger="change" required />
+          <label for="capacity">capacity * :</label>
+          <input type="number" [(ngModel)]="camp.capacity" class="form-control"  data-parsley-trigger="change" required />
+          <label for="occupancy">occupancy * :</label>
+          <input type="number" [(ngModel)]="camp.occupancy" class="form-control"  data-parsley-trigger="change" required />
+          <label for="budget">budget * :</label>
+          <input type="text" [(ngModel)]="camp.budget" class="form-control"  data-parsley-trigger="change" required />
+          <div id="demo"></div>
+  
+          <label>supplies:</label><br>
+          <div class="pretty p-icon p-round p-jelly">
+                <input type="checkbox" [(ngModel)]="camp.water"  value="true"/>
+                <div class="state p-primary">
+                    <i class="icon mdi mdi-check"></i>
+                    <label>Water</label>
+                </div>
+            </div>
+    <br />
+    <div class="pretty p-icon p-round p-jelly">
+        <input type="checkbox" [(ngModel)]="camp.electricity" value="true"/>
+        <div class="state p-warning">
+            <i class="icon mdi mdi-check"></i>
+            <label>Electricity</label>
+        </div>
+    </div>
+    <br />
+  
+              <label for="heard">Camp Manager :{{camp.campManager["name"]}} {{camp.campManager["surname"]}}</label>
+              <select id="heard" class="form-control" required [(ngModel)]="camp.campManager">
+                  <option value="">Choose..</option>
+                 <option *ngFor="let c of campmanagers" [ngValue]="c.id">
+                   {{c.name}} {{c.surname}}
+                 </option>
+              </select>
+                <h4>Camp Location :</h4>
+                <div class="form-group">
+                        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+                      </div>
+                <agm-map 
+                [latitude]="lat"
+                [longitude]="lng" [zoom]="9"
+                [disableDefaultUI]=false
+                [zoomControl]=false
+                (mapClick)="mapClicked($event)">
+                  <agm-marker *ngFor="let m of markers;let i = index"
+                  (markerClick)="clickedMarker(m, i)"
+                  [latitude]="m.lat" 
+                  [longitude]="m.lng"
+                  [markerDraggable]="m.draggable"
+                  (dragEnd)="markerDragEnd(m, $event)"          
+                  >
+                  <agm-info-window>
+                        <strong>{{m.name}}</strong>
+                    </agm-info-window>
+                </agm-marker>
+                </agm-map>    
+          <input type="hidden"  [(ngModel)]="newLat">
+           <input type="hidden"   [(ngModel)]="newLng">
+           <input type="hidden"   [(ngModel)]="camp.latLng" >
+           <button class="btn btn-primary" (click)="updateCamp()">Save</button>
+           
+     </div></div>

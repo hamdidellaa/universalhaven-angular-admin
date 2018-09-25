@@ -1,0 +1,60 @@
+<div class="x_panel">
+  <div class="x_title">
+      <h2>Create Room</h2>
+
+      <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+      <div class="form-group">
+          <label for="ref">Reference * :</label>
+          <input type="text" [(ngModel)]="room.reference" class="form-control" 
+          ngModel #reference="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required   />
+          <small class="form-text text-muted danger" *ngIf="!reference.valid && (reference.dirty || reference.touched)">
+              This field is required!</small>
+          </div>
+          <div class="form-group">
+          <label for="bed">Beds * :</label>
+          <input type="number" [(ngModel)]="room.beds" class="form-control"
+          ngModel #bed="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required  />
+          <small class="form-text text-muted danger" *ngIf="!bed.valid && (bed.dirty || bed.touched)">
+              This field is required!</small>
+            </div>
+            <div class="form-group">
+          <label for="superficy">Superficy * :</label>
+          <input type="number"  class="form-control" [(ngModel)]="room.superficy" 
+          ngModel #superficy="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required  />
+          <small class="form-text text-muted danger" *ngIf="!superficy.valid && (superficy.dirty || superficy.touched)">
+              This field is required!</small>
+            </div>
+            <div class="form-group">
+          <label>Rooms Type *:</label>
+          <p>
+              Couple: <input type="radio"  [(ngModel)]="room.type" value="1" checked  />
+              Females: <input type="radio"  [(ngModel)]="room.type" value="2" />
+              Males: <input type="radio"  [(ngModel)]="room.type" value="3" />
+              Families: <input type="radio"  [(ngModel)]="room.type" value="4" />
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="camp">Camp *:</label>
+          <select  class="form-control" [(ngModel)]="room.campId"
+          ngModel #camp="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required >
+            <option value="">Choose..</option>
+            <option *ngFor="let c of camps" [ngValue]="c.id">
+              {{c.name}} in  {{c.country}}
+            </option>
+
+          </select>
+          <small class="form-text text-muted danger" *ngIf="!camp.valid && (camp.dirty || camp.touched)">
+              This field is required!</small>
+            </div>
+           
+          <br />
+          
+          
+          <button class="btn btn-primary" (click)="saveRoom()">Create Room</button>
+
+      
+
+  </div>
+</div>

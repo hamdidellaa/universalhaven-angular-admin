@@ -1,0 +1,138 @@
+<div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Fundraising event <small>Add new event</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form (change)="log(eventData)" id = "formNewFundraisingEvent" name = "formNewFundraisingEvent" #eventData = "ngForm" (ngSubmit) = "addNewFundraisingEvent(eventData.value)" data-parsley-validate class="form-horizontal form-label-left">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Title <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type = "text" name="title" id="title" placeholder="title" ngModel required="required" class="form-control col-md-7 col-xs-12"
+                            #title="ngModel">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" > <span class="required"></span>
+                        </label>
+                        <div  class="col-md-6 col-sm-6 col-xs-12" *ngIf="!title.valid  && title.touched">
+                          <div class="alert alert-danger">
+                            <span *ngIf="!title.errors.valid"><strong> Required!!!</strong></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea name="description" id="description" placeholder="description"
+                           ngModel class="form-control" rows="3" placeholder='Description' #description="ngModel" required="required" ></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" > <span class="required"></span>
+                        </label>
+                        <div  class="col-md-6 col-sm-6 col-xs-12" *ngIf="!description.valid  && description.touched">
+                          <div class="alert alert-danger">
+                            <span *ngIf="!description.errors.valid"><strong> Required!!!</strong></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Goal <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="goal" name="goal" placeholder="goal" ngModel required="required" class="form-control col-md-7 col-xs-12"
+                          #goal="ngModel">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" > <span class="required"></span>
+                        </label>
+                        <div  class="col-md-6 col-sm-6 col-xs-12" *ngIf="!goal.valid  && goal.touched">
+                          <div class="alert alert-danger">
+                            <span *ngIf="!goal.errors.valid"><strong> Required!!!</strong></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="imagePath" class="control-label col-md-3 col-sm-3 col-xs-12">Image</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <!--<input type="file" ngFileSelect [options]="options" (onUpload)="handleUpload($event)"
+                           (beforeUpload)="beforeUpload($event)" name="imagePath" id="imagePath"
+                            placeholder="imagePath" ngModel>-->
+                        </div>
+                      </div>
+                      <!--<div class="form-group">
+                        <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <img style="width: 100%; display: block;" src="http://localhost/FileUpload/uploads/{{ uploadFile.generatedName }}"/> 
+                        </div>
+                      </div>-->
+                      
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Urgency</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control" name="urgency" id="urgency" ngModel>
+                            <option value="">Choose urgency</option>
+                             <option *ngFor="let urg of urgency" [value]="urg">{{urg}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Camp</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="form-control" name="camp" id="camp" ngModel >
+                            <option value="">Choose camp</option>
+                            <option *ngFor="let camp of camps" [value]="camp.id">{{camp.address}} : {{camp.country}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button class="btn btn-primary" type="button" routerLink ="/fundraisingEvents">Cancel</button>
+						              <button class="btn btn-primary" type="reset">Reset</button>
+                          <button type="submit" class="btn btn-success" [disabled]="!eventData.form.valid"  >Submit</button>
+
+                        </div>
+                      </div>
+                      
+
+                    </form>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <div class="alert alert-success" *ngIf = "isAdded">
+                            <strong>Success!</strong> {{confirmationString}}
+                          </div>
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+           <!-- Response: {{ uploadFile.generatedName }}-->
+            
+            

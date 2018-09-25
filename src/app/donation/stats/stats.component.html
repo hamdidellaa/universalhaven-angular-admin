@@ -1,0 +1,66 @@
+<div class="row top_tiles">
+  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+          <div class="icon"><i class="fa fa-money"></i></div>
+          <div class="count">{{average}}</div>
+          <h3>Dollars</h3>
+          <p><b>Average</b> donated amount</p>
+      </div>
+  </div>
+  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+          <div class="icon"><i class="fa fa-money"></i></div>
+          <div id="today" class="count">{{today}}</div>
+          <h3>Dollars</h3>
+          <p>Collected <b>today</b></p>
+      </div>
+  </div>
+  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+          <div class="icon"><i class="fa fa-money"></i></div>
+          <div id="thismonth" class="count">{{thismonth}}</div>
+          <h3>Dollars</h3>
+          <p>Collected <b>this month</b></p>
+      </div>
+  </div>
+  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+          <div class="icon"><i class="fa fa-money"></i></div>
+          <div id="thisyear" class="count">{{thisyear}}</div>
+          <h3>Dollars</h3>
+          <p>Collected <b>this year</b></p>
+      </div>
+  </div>
+ 
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+        <app-loader *ngIf="!map1Ready"></app-loader>
+        <div *ngIf="map1Ready">
+          <google-chart [data]="firstMapData"></google-chart>
+        </div>
+  </div>
+  <div class="col-md-6">
+        <app-loader *ngIf="!map2Ready"></app-loader>
+      <div *ngIf="map2Ready">
+          <google-chart [data]="secondMapData"></google-chart>
+      </div>
+  </div>
+</div>
+<div class="row">
+ <div class="col-md-12">
+    <div style="display: block;">
+    <app-loader *ngIf="!chartReady"></app-loader>
+    <canvas *ngIf="chartReady" baseChart width="900" height="300"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>
